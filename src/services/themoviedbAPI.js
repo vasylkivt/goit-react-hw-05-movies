@@ -19,13 +19,8 @@ const getMovieCastByMovieId = async movieId => {
   const response = await axios.get(
     `/movie/${movieId}/credits?api_key=${API_KEY}`
   );
-
-  // const sortByPopularity = response.data.cast.sort(
-  //   (prevActor, nextActor) => nextActor.popularity - prevActor.popularity
-  // );
-
-  // return sortByPopularity;
   return response.data.cast;
+  //  return response.data.cast.sort((prevActor, nextActor) => nextActor.popularity - prevActor.popularity);
 };
 
 const getMovieReviewsByMovieId = async movieId => {

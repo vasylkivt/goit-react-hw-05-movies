@@ -5,15 +5,11 @@ import { TMDB_API } from 'services';
 
 export const Movies = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-  const movieName = searchParams.get('query') ?? '';
-  console.log('movieName:', movieName);
+  const query = searchParams.get('query') ?? '';
 
-  const handleSubmit = (e, value) => {
-    e.preventDefault();
+  const handleSubmit = value => {
     setSearchParams({ query: value });
-    setQuery(value);
   };
 
   useEffect(() => {
