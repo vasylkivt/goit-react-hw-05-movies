@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/247.91e505f6.chunk.js","mappings":"0JAGA,UAHkB,WAChB,OAAOA,EAAAA,EAAAA,KAAA,OAAAC,SAAK,2BACd,C","sources":["pages/ErrorPage/ErrorPage.jsx"],"sourcesContent":["const ErrorPage = () => {\n  return <div>ErrorPage 404 Not Fount</div>;\n};\nexport default ErrorPage;\n"],"names":["_jsx","children"],"sourceRoot":""}
