@@ -6,5 +6,6 @@ export * from 'components/Section/Section.style';
 export * from 'components/SharedLayout/SharedLayout';
 export * from 'components/SearchBar/SearchBar';
 export * from 'components/MovieList/MovieList';
+export * from 'components/MovieItem/MovieItem';
 // export * from 'components/Cast/Cast';
 // export * from 'components/Reviews/Reviews';

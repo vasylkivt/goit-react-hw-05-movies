@@ -47,10 +47,10 @@ const Movies = () => {
   }, [query]);
 
   return (
-    <div>
+    <>
       <SearchBar onSubmit={handleSubmit} />
       <MovieList movies={movies} />
-    </div>
+    </>
   );
 };
 
