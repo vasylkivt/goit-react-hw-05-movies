@@ -9,24 +9,24 @@ export const SharedLayout = () => {
         <Container>
           <nav>
             <NavLink to={'/'}>Home</NavLink>
-            <NavLink to={'/movies'}>Movies</NavLink>
+            <NavLink to={'movies'}>Movies</NavLink>
           </nav>
         </Container>
       </Header>
-      <Suspense fallback={<div>Loading...</div>}>
-        <main>
+      <main>
+        <Suspense fallback={<div>Loading...</div>}>
           <Section>
             <Container>
               <Outlet />
             </Container>
           </Section>
-        </main>
-      </Suspense>
+        </Suspense>
+      </main>
       <Footer>
         <Container>
           <nav>
             <NavLink to={'/'}>Home</NavLink>
-            <NavLink to={'/movies'}>Movies</NavLink>
+            <NavLink to={'movies'}>Movies</NavLink>
           </nav>
         </Container>
       </Footer>

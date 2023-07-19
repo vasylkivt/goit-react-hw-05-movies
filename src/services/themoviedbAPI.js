@@ -3,36 +3,50 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '267e0ef2e56c2254d403c0d4ffe19052';
 
-const getTrendMovieByParam = async param => {
+const getTrendMovieByParam = async (param, controller) => {
   const response = await axios.get(
-    `trending/movie/${param}?api_key=${API_KEY}`
+    `trending/movie/${param}?api_key=${API_KEY}`,
+    {
+      signal: controller.signal,
+    }
   );
   return response.data.results;
 };
 
-const getMovieByMovieId = async movieId => {
-  const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`);
+const getMovieByMovieId = async (movieId, controller) => {
+  const response = await axios.get(`/movie/${movieId}?api_key=${API_KEY}`, {
+    signal: controller.signal,
+  });
   return response.data;
 };
 
-const getMovieCastByMovieId = async movieId => {
+const getMovieCastByMovieId = async (movieId, controller) => {
   const response = await axios.get(
-    `/movie/${movieId}/credits?api_key=${API_KEY}`
+    `/movie/${movieId}/credits?api_key=${API_KEY}`,
+    {
+      signal: controller.signal,
+    }
   );
   return response.data.cast;
   //  return response.data.cast.sort((prevActor, nextActor) => nextActor.popularity - prevActor.popularity);
 };
 
-const getMovieReviewsByMovieId = async movieId => {
+const getMovieReviewsByMovieId = async (movieId, controller) => {
   const response = await axios.get(
-    `/movie/${movieId}/reviews?api_key=${API_KEY}`
+    `/movie/${movieId}/reviews?api_key=${API_KEY}`,
+    {
+      signal: controller.signal,
+    }
   );
   return response.data.results;
 };
 
-const searchMovieByQuery = async query => {
+const searchMovieByQuery = async (query, controller) => {
   const response = await axios.get(
-    `/search/movie?api_key=${API_KEY}&query=${query}`
+    `/search/movie?api_key=${API_KEY}&query=${query}`,
+    {
+      signal: controller.signal,
+    }
   );
   return response.data.results;
 };

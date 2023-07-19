@@ -9,26 +9,41 @@ const Movies = () => {
   const query = searchParams.get('query') ?? '';
 
   const handleSubmit = value => {
-    setSearchParams({ query: value });
+    const nextParams = value !== '' ? { query: value } : {};
+    setSearchParams(nextParams);
   };
 
   useEffect(() => {
-    const getTrendMovieByParam = async () => {
-      const response = await TMDB_API.getTrendMovieByParam('week');
+    if (query) return;
+    const controller = new AbortController();
 
-      setMovies(response);
+    const getTrendMovieByParam = async () => {
+      try {
+        const response = await TMDB_API.getTrendMovieByParam(
+          'week',
+          controller
+        );
+        setMovies(response);
+      } catch (error) {}
     };
     getTrendMovieByParam();
-  }, []);
+    return () => controller.abort();
+  }, [query]);
 
   useEffect(() => {
     if (!query) return;
-    const searchMovieByQuery = async () => {
-      const response = await TMDB_API.searchMovieByQuery(query);
+    const controller = new AbortController();
 
-      setMovies(response);
+    const searchMovieByQuery = async () => {
+      try {
+        const response = await TMDB_API.searchMovieByQuery(query, controller);
+
+        setMovies(response);
+      } catch (error) {}
     };
     searchMovieByQuery();
+
+    return () => controller.abort();
   }, [query]);
 
   return (

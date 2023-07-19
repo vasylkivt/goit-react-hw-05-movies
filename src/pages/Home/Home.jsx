@@ -6,12 +6,17 @@ const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+    const controller = new AbortController();
     const getTrendingAllDay = async () => {
-      const response = await TMDB_API.getTrendMovieByParam('day');
+      try {
+        const response = await TMDB_API.getTrendMovieByParam('day', controller);
 
-      setMovies(response);
+        setMovies(response);
+      } catch (error) {}
     };
     getTrendingAllDay();
+
+    return () => controller.abort();
   }, []);
 
   return (

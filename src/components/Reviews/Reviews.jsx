@@ -9,13 +9,21 @@ const Reviews = () => {
 
   useEffect(() => {
     if (!movieId) return;
+    const controller = new AbortController();
 
     const getMovieReviewsByMovieId = async () => {
-      const response = await TMDB_API.getMovieReviewsByMovieId(movieId);
+      try {
+        const response = await TMDB_API.getMovieReviewsByMovieId(
+          movieId,
+          controller
+        );
 
-      setReviews(response);
+        setReviews(response);
+      } catch (error) {}
     };
     getMovieReviewsByMovieId();
+
+    return () => controller.abort();
   }, [movieId]);
   return (
     <>

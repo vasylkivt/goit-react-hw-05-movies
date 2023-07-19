@@ -8,16 +8,24 @@ const Cast = () => {
   const { movieId } = useParams();
 
   const [cast, setCast] = useState();
-  console.log('movieId:', movieId);
+
   useEffect(() => {
     if (!movieId) return;
 
+    const controller = new AbortController();
     const getMovieCastByMovieId = async () => {
-      const response = await TMDB_API.getMovieCastByMovieId(movieId);
+      try {
+        const response = await TMDB_API.getMovieCastByMovieId(
+          movieId,
+          controller
+        );
 
-      setCast(response);
+        setCast(response);
+      } catch (error) {}
     };
     getMovieCastByMovieId();
+
+    return () => controller.abort();
   }, [movieId]);
   return (
     <div>
