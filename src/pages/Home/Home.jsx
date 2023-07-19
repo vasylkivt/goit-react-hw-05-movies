@@ -2,7 +2,7 @@ import { MovieList } from 'components';
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'services';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
@@ -20,3 +20,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
@@ -38,3 +38,5 @@ export const Movies = () => {
     </div>
   );
 };
+
+export default Movies;

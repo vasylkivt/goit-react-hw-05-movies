@@ -4,7 +4,7 @@ import { TMDB_API } from 'services';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original/';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
 
   const location = useLocation();
@@ -49,3 +49,5 @@ export const MovieDetails = () => {
     </>
   );
 };
+
+export default MovieDetails;

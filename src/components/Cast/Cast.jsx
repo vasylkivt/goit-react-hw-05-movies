@@ -4,7 +4,7 @@ import { TMDB_API } from 'services';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/original/';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
 
   const [cast, setCast] = useState();
@@ -33,3 +33,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;
