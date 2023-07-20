@@ -1,4 +1,5 @@
 import { Button, MovieDetailsItem, Notification } from 'components';
+import styled from 'styled-components';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
@@ -37,14 +38,20 @@ const MovieDetails = () => {
         <Button $marginBottom={'20px'}>Back</Button>
       </Link>
       {movie && (
-        <div>
+        <>
           <MovieDetailsItem movie={movie} />
-          <Link to="cast">Cast</Link>
-          <Link to="reviews">Reviews</Link>
+          <BtnWrap>
+            <Link to="cast">
+              <Button>Cast</Button>
+            </Link>
+            <Link to="reviews">
+              <Button>Reviews</Button>
+            </Link>
+          </BtnWrap>
           <Suspense fallback={<div>Loading subpage...</div>}>
             <Outlet />
           </Suspense>
-        </div>
+        </>
       )}
       {error && (
         <Notification>{`❌ Something went wrong - ${error}`}</Notification>
@@ -52,5 +59,11 @@ const MovieDetails = () => {
     </>
   );
 };
+
+export const BtnWrap = styled.div`
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+`;
 
 export default MovieDetails;
