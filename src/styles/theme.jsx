@@ -1,6 +1,7 @@
 export const theme = {
   colors: {
-    accent: '#44bd32',
+    accent: '#37b5e1',
+    accentSecond: '#3ed3ac',
 
     black: '#000000',
     white: '#ffffff',
@@ -13,9 +14,11 @@ export const theme = {
     titleColorLight: '#dcdde1',
     titleColorDark: '#353b48',
     backgroundColorLight: '#F8F8F8',
-    backgroundColorDark: '#282828',
+    backgroundColorDark: ' #062541',
 
-    linearGradient: `radial-gradient(circle at 50% 50%, #f5f6fa 0%, #44bd32 100%)`,
+    radialGradient: `radial-gradient(circle at 50% 50%, #f5f6fa 0%, #44bd32 100%)`,
+
+    linearGradient: `linear-gradient(to right, #3ed3ac 0%, #37b5e1 100%)`,
   },
   fontSizes: {
     xSmall: '14px',
@@ -27,7 +30,7 @@ export const theme = {
   spacing: value => `${4 * value}px`,
 
   shadows: {
-    main: '1px 1px 14px rgba(1, 1, 1, 0.25);',
+    main: '1px 1px 14px#3ed3ac;',
     small: '0 5px 7px -1px rgba(51, 51, 51, 0.23)',
     regular: '0px 4px 10px 4px #9e9e9e',
     medium: '0 9px 47px 11px rgba(51, 51, 51, 0.18);',

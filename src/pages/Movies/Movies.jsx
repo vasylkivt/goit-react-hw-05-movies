@@ -2,6 +2,7 @@ import { MovieList, SearchBar } from 'components';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
+import styled from 'styled-components';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
@@ -49,9 +50,17 @@ const Movies = () => {
   return (
     <>
       <SearchBar onSubmit={handleSubmit} />
+      <Title>
+        {query ? `Movies by result '${query}'` : "In this week's trend"}
+      </Title>
       <MovieList movies={movies} />
     </>
   );
 };
+
+const Title = styled.h1`
+  font-size: 40px;
+  margin-bottom: 25px;
+`;
 
 export default Movies;

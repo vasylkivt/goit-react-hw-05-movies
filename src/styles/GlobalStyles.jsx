@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import bgImage from './bg-image.jpg';
 
 export const GlobalStyle = createGlobalStyle`
 html {
@@ -6,7 +7,8 @@ html {
   scroll-behavior: smooth;
 }
 body {
-  background: ${({ theme }) => theme.colors.backgroundColorLight};
+  background-image: url(${bgImage});
+  /* background: ${({ theme }) => theme.colors.backgroundColorLight}; */
   min-height: 100vh;
   margin: 0;
 

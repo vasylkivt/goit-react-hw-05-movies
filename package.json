@@ -5,6 +5,7 @@
   "homepage": "https://vasylkivt.github.io/goit-react-hw-05-movies/",
   "dependencies": {
     "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
     "formik": "^2.4.2",
     "modern-normalize": "^2.0.0",
     "prop-types": "^15.8.1",

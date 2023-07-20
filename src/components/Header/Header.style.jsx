@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const Header = styled.header`
-  outline: 2px solid black;
+  display: flex;
+  align-items: center;
   height: 68px;
-  background-color: aqua;
+  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
 `;

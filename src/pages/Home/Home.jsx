@@ -1,6 +1,7 @@
 import { MovieList } from 'components';
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'services';
+import styled from 'styled-components';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
@@ -21,9 +22,15 @@ const Home = () => {
 
   return (
     <>
+      <Title>In trend Today</Title>
       <MovieList movies={movies} />
     </>
   );
 };
+
+const Title = styled.h1`
+  font-size: 40px;
+  margin-bottom: 25px;
+`;
 
 export default Home;
