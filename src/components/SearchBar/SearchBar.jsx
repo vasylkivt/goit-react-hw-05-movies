@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { Button, Input, SearchForm, SearchIcon } from './SearchBar.style';
 
 export const SearchBar = ({ onSubmit }) => {
   const [searchParams] = useSearchParams();
@@ -17,12 +18,19 @@ export const SearchBar = ({ onSubmit }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input onChange={handleChange} value={query} type="text" />
-        <button style={{ backgroundColor: '#00000040' }} type="submit">
-          Search
-        </button>
-      </form>
+      <SearchForm onSubmit={handleSubmit}>
+        <Input
+          onChange={handleChange}
+          value={query}
+          type="text"
+          name="searchValue"
+          autoComplete="off"
+          placeholder="Search movies "
+        />
+        <Button type="submit">
+          <SearchIcon />
+        </Button>
+      </SearchForm>
     </div>
   );
 };

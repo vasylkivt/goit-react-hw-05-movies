@@ -51,7 +51,10 @@ const Movies = () => {
     <>
       <SearchBar onSubmit={handleSubmit} />
       <Title>
-        {query ? `Movies by result '${query}'` : "In this week's trend"}
+        {movies.length === 0 && `Movies by result '${query}' No Fount`}
+        {query && movies.length !== 0 && `Movies by result '${query}'`}
+
+        {!query && "In this week's trend"}
       </Title>
       <MovieList movies={movies} />
     </>

@@ -1,4 +1,4 @@
-import { MovieList } from 'components';
+import { Button, MovieList } from 'components';
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'services';
 import styled from 'styled-components';
@@ -24,6 +24,7 @@ const Home = () => {
     <>
       <Title>In trend Today</Title>
       <MovieList movies={movies} />
+      <Button $marginLeft={'auto'}>{'Load More'}</Button>
     </>
   );
 };

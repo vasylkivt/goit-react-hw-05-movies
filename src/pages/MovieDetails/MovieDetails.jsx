@@ -1,4 +1,4 @@
-import { MovieDetailsItem } from 'components';
+import { Button, MovieDetailsItem } from 'components';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
@@ -29,7 +29,9 @@ const MovieDetails = () => {
     <>
       {movie && (
         <div>
-          <Link to={backLinkLocationRef.current}>Back to </Link>
+          <Link to={backLinkLocationRef.current}>
+            <Button $marginBottom={'20px'}>Back</Button>
+          </Link>
           <MovieDetailsItem movie={movie} />
           <Link to="cast">Cast</Link>
           <Link to="reviews">Reviews</Link>

@@ -15,15 +15,15 @@ export const SharedLayout = () => {
           </Nav>
         </Header>
       </Container>
-      <main>
-        <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading...</div>}>
+        <main>
           <Container>
             <Section>
               <Outlet />
             </Section>
           </Container>
-        </Suspense>
-      </main>
+        </main>
+      </Suspense>
       <Container>
         <Footer>
           <Nav>
