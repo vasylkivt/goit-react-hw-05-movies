@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgoit_react_hw_05_movies=self.webpackChunkgoit_react_hw_05_movies||[]).push([[247],{200:function(e,t,r){r.r(t);var i=r(184);t.default=function(){return(0,i.jsx)("div",{children:"ErrorPage 404 Not Fount"})}}}]);
-//# sourceMappingURL=247.91e505f6.chunk.js.map
