@@ -1,4 +1,4 @@
-import { Button, MovieDetailsItem } from 'components';
+import { Button, MovieDetailsItem, Notification } from 'components';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
@@ -8,6 +8,7 @@ const MovieDetails = () => {
   const location = useLocation();
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const [movie, setMovie] = useState();
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     if (!movieId) return;
@@ -18,7 +19,12 @@ const MovieDetails = () => {
         const response = await TMDB_API.getMovieByMovieId(movieId, controller);
 
         setMovie(response);
-      } catch (error) {}
+        setError(false);
+      } catch (error) {
+        if (error.message === 'canceled') return;
+
+        setError(error.message);
+      }
     };
     getMovieByMovieId();
 
@@ -27,11 +33,11 @@ const MovieDetails = () => {
 
   return (
     <>
+      <Link to={backLinkLocationRef.current}>
+        <Button $marginBottom={'20px'}>Back</Button>
+      </Link>
       {movie && (
         <div>
-          <Link to={backLinkLocationRef.current}>
-            <Button $marginBottom={'20px'}>Back</Button>
-          </Link>
           <MovieDetailsItem movie={movie} />
           <Link to="cast">Cast</Link>
           <Link to="reviews">Reviews</Link>
@@ -39,6 +45,9 @@ const MovieDetails = () => {
             <Outlet />
           </Suspense>
         </div>
+      )}
+      {error && (
+        <Notification>{`❌ Something went wrong - ${error}`}</Notification>
       )}
     </>
   );

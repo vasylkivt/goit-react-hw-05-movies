@@ -1,11 +1,12 @@
-import { MovieList, SearchBar } from 'components';
+import { MovieList, Notification, SearchBar } from 'components';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
-import styled from 'styled-components';
 
 const Movies = () => {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
 
@@ -25,7 +26,12 @@ const Movies = () => {
           controller
         );
         setMovies(response);
-      } catch (error) {}
+
+        setError(false);
+      } catch (error) {
+        if (error.message === 'canceled') return;
+        setError(error.message);
+      }
     };
     getTrendMovieByParam();
     return () => controller.abort();
@@ -40,7 +46,11 @@ const Movies = () => {
         const response = await TMDB_API.searchMovieByQuery(query, controller);
 
         setMovies(response);
-      } catch (error) {}
+        setError(false);
+      } catch (error) {
+        if (error.message === 'canceled') return;
+        setError(error.message);
+      }
     };
     searchMovieByQuery();
 
@@ -50,20 +60,26 @@ const Movies = () => {
   return (
     <>
       <SearchBar onSubmit={handleSubmit} />
-      <Title>
-        {movies.length === 0 && `Movies by result '${query}' No Fount`}
-        {query && movies.length !== 0 && `Movies by result '${query}'`}
-
-        {!query && "In this week's trend"}
-      </Title>
+      {!error && !query && (
+        <Notification $marginBottom={'25px'}>In this week's trend</Notification>
+      )}
+      {!error && query && movies?.length !== 0 && (
+        <Notification $marginBottom={'25px'}>
+          {`Movies by result '${query}'`}
+        </Notification>
+      )}
+      <Notification $marginBottom={'25px'}>
+        {!error &&
+          movies?.length === 0 &&
+          query &&
+          `Sorry. There are no movies by result '${query}' ... 😭  `}
+      </Notification>
+      {error && (
+        <Notification> {`❌ Something went wrong - ${error}`}</Notification>
+      )}
       <MovieList movies={movies} />
     </>
   );
 };
-
-const Title = styled.h1`
-  font-size: 40px;
-  margin-bottom: 25px;
-`;
 
 export default Movies;

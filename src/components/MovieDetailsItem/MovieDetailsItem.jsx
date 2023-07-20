@@ -1,3 +1,5 @@
+import default_horizontal_poster_path from '../../styles/default_horizontal_poster_path.jpg';
+
 import {
   Description,
   Image,
@@ -8,8 +10,8 @@ import {
   Name,
   Title,
 } from './MovieDetailsItem.style';
-
-const IMG_URL = 'https://image.tmdb.org/t/p/original/';
+import { IMG_URL } from 'constants';
+import { formatDate } from 'helpers';
 
 export const MovieDetailsItem = ({
   movie: {
@@ -30,7 +32,11 @@ export const MovieDetailsItem = ({
         loading="lazy"
         width="704"
         height="400"
-        src={`${IMG_URL}${backdrop_path}`}
+        src={
+          backdrop_path
+            ? `${IMG_URL}${backdrop_path}`
+            : default_horizontal_poster_path
+        }
         alt={original_title}
       />
       <div>
@@ -38,7 +44,7 @@ export const MovieDetailsItem = ({
         <InfoWrap>
           <InfoList>
             <InfoItem>
-              <Name>Release date</Name> {release_date}
+              <Name>Release date</Name> {formatDate(release_date)}
             </InfoItem>
             <InfoItem>
               <Name>Vote / Votes</Name> {vote_average} / {vote_count}

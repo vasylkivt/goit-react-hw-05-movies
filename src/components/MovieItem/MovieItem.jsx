@@ -1,6 +1,7 @@
+import { IMG_URL } from 'constants';
 import { DateText, Image, InfoWrap, Title } from './MovieItem.style';
 import { formatDate } from 'helpers';
-const IMG_URL = 'https://image.tmdb.org/t/p/original/';
+import default_vertical_poster_path from '../../styles/default_vertical_poster_path.jpg';
 
 export const MovieItem = ({
   movie: { original_title, release_date, poster_path },
@@ -11,7 +12,11 @@ export const MovieItem = ({
         loading="lazy"
         width="250"
         height="375"
-        src={`${IMG_URL}${poster_path}`}
+        src={
+          poster_path
+            ? `${IMG_URL}${poster_path}`
+            : default_vertical_poster_path
+        }
         alt={original_title}
       />
       <InfoWrap>

@@ -1,10 +1,10 @@
-import { Button, MovieList } from 'components';
+import { Button, MovieList, Notification } from 'components';
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'services';
-import styled from 'styled-components';
 
 const Home = () => {
   const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -13,7 +13,12 @@ const Home = () => {
         const response = await TMDB_API.getTrendMovieByParam('day', controller);
 
         setMovies(response);
-      } catch (error) {}
+        setError(false);
+      } catch (error) {
+        if (error.message === 'canceled') return;
+
+        setError(error.message);
+      }
     };
     getTrendingAllDay();
 
@@ -22,16 +27,14 @@ const Home = () => {
 
   return (
     <>
-      <Title>In trend Today</Title>
+      <Notification $marginBottom={'25px'}>
+        {!error && 'In trend Today'}
+        {error && `❌ Something went wrong - ${error}`}
+      </Notification>
       <MovieList movies={movies} />
       <Button $marginLeft={'auto'}>{'Load More'}</Button>
     </>
   );
 };
-
-const Title = styled.h1`
-  font-size: 40px;
-  margin-bottom: 25px;
-`;
 
 export default Home;
