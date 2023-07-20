@@ -48,7 +48,7 @@ const Reviews = () => {
   }, [movieId]);
   return (
     <>
-      {reviews && (
+      {reviews && reviews?.length !== 0 && (
         <List>
           {reviews.map(
             ({
