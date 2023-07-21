@@ -1,5 +1,5 @@
-import { /*  Cast, Reviews, */ SharedLayout } from 'components';
-// import { Home, MovieDetails, Movies } from 'pages';
+import { SharedLayout } from 'components';
+
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 
