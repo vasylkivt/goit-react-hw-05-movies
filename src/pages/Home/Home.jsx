@@ -1,4 +1,4 @@
-import { Button, MovieList, Notification, SkeletonMovie } from 'components';
+import { MovieList, Notification, SkeletonMovie } from 'components';
 
 import { useEffect, useState } from 'react';
 import { TMDB_API } from 'services';
@@ -38,8 +38,6 @@ const Home = () => {
       </Notification>
       {!isLoading && <MovieList movies={movies} />}
       {isLoading && <SkeletonMovie />}
-
-      <Button $marginLeft={'auto'}>{'Load More'}</Button>
     </>
   );
 };

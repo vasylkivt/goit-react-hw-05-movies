@@ -10,6 +10,7 @@ const getTrendMovieByParam = async (param, controller) => {
       signal: controller.signal,
     }
   );
+
   return response.data.results;
 };
 
@@ -41,14 +42,15 @@ const getMovieReviewsByMovieId = async (movieId, controller) => {
   return response.data.results;
 };
 
-const searchMovieByQuery = async (query, controller) => {
+const searchMovieByQuery = async (query, page, controller) => {
   const response = await axios.get(
-    `/search/movie?api_key=${API_KEY}&query=${query}`,
+    `/search/movie?api_key=${API_KEY}&query=${query}&page=${page}`,
     {
       signal: controller.signal,
     }
   );
-  return response.data.results;
+
+  return response.data;
 };
 
 export const TMDB_API = {
