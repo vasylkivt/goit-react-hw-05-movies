@@ -48,13 +48,16 @@ const Movies = () => {
 
     const searchMovieByQuery = async () => {
       try {
+        setIsLoading(true);
         const response = await TMDB_API.searchMovieByQuery(query, controller);
 
         setMovies(response);
         setError(false);
+        setIsLoading(false);
       } catch (error) {
         if (error.message === 'canceled') return;
         setError(error.message);
+        setIsLoading(false);
       }
     };
     searchMovieByQuery();
@@ -65,16 +68,17 @@ const Movies = () => {
   return (
     <>
       <SearchBar onSubmit={handleSubmit} />
-      {!error && !query && (
+      {!isLoading && !error && !query && (
         <Notification $marginBottom={'25px'}>In this week's trend</Notification>
       )}
-      {!error && query && movies?.length !== 0 && (
+      {!isLoading && !error && query && movies?.length !== 0 && (
         <Notification $marginBottom={'25px'}>
           {`Movies by result '${query}'`}
         </Notification>
       )}
       <Notification $marginBottom={'25px'}>
-        {!error &&
+        {!isLoading &&
+          !error &&
           movies?.length === 0 &&
           query &&
           `Sorry. There are no movies by result '${query}' ... 😭  `}
