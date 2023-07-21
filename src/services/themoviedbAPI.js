@@ -29,7 +29,6 @@ const getMovieCastByMovieId = async (movieId, controller) => {
     }
   );
   return response.data.cast;
-  //  return response.data.cast.sort((prevActor, nextActor) => nextActor.popularity - prevActor.popularity);
 };
 
 const getMovieReviewsByMovieId = async (movieId, controller) => {

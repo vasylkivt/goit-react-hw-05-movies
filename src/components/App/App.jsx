@@ -1,5 +1,4 @@
 import { SharedLayout } from 'components';
-
 import { Route, Routes } from 'react-router-dom';
 import { lazy } from 'react';
 

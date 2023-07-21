@@ -1,4 +1,5 @@
 import default_horizontal_poster_path from '../../styles/default_horizontal_poster_path.jpg';
+import PropTypes from 'prop-types';
 
 import {
   Description,
@@ -66,4 +67,20 @@ export const MovieDetailsItem = ({
       </div>
     </MovieWrap>
   );
+};
+MovieDetailsItem.propTypes = {
+  movie: PropTypes.shape({
+    backdrop_path: PropTypes.string.isRequired,
+    original_title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    vote_average: PropTypes.number.isRequired,
+    vote_count: PropTypes.number.isRequired,
+    popularity: PropTypes.number.isRequired,
+    genres: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string.isRequired,
+      }).isRequired
+    ).isRequired,
+    overview: PropTypes.string.isRequired,
+  }).isRequired,
 };

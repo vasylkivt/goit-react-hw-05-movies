@@ -25,10 +25,6 @@ export const Image = styled.img`
   border-radius: 50%;
   object-fit: cover;
 `;
-export const TextWrap = styled.div``;
-export const Name = styled.p``;
-export const Rating = styled.p``;
-export const CommentWrap = styled.div``;
 
 export const Comment = styled.p`
   margin-bottom: 5px;

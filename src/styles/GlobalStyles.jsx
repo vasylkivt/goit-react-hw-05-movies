@@ -8,10 +8,8 @@ html {
 }
 body {
   background-image: url(${bgImage});
-  /* background: ${({ theme }) => theme.colors.backgroundColorLight}; */
   min-height: 100vh;
   margin: 0;
-
   font-style: normal;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',

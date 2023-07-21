@@ -32,7 +32,10 @@ export const InfoWrap = styled.div`
 `;
 
 export const Title = styled.h2`
+  color: ${({ theme }) => theme.colors.titleColorDark};
   margin-bottom: 5px;
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+  color: ${({ theme }) => theme.colors.textColorDark};
+`;

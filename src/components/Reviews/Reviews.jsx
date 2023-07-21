@@ -5,18 +5,7 @@ import { useParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
 import default_vertical_poster_path from '../../styles/default_vertical_poster_path.jpg';
 import { formatDate } from 'helpers';
-import {
-  Comment,
-  CommentWrap,
-  Date,
-  Image,
-  Item,
-  List,
-  Name,
-  Rating,
-  TextWrap,
-  UserInfo,
-} from './Reviews.style';
+import { Comment, Date, Image, Item, List, UserInfo } from './Reviews.style';
 import { SkeletonReviews } from './SkeletonReviews';
 
 const Reviews = () => {
@@ -72,16 +61,16 @@ const Reviews = () => {
                 <Item key={id}>
                   <UserInfo>
                     <Image src={imgUrl} alt="" />
-                    <TextWrap>
-                      <Name>Author: {name}</Name>
-                      <Rating>Rating: {rating}</Rating>
-                    </TextWrap>
+                    <div>
+                      <p>Author: {name}</p>
+                      <p>Rating: {rating}</p>
+                    </div>
                   </UserInfo>
 
-                  <CommentWrap>
+                  <div>
                     <Comment>{content} </Comment>
                     <Date>{formatDate(updated_at)}</Date>
-                  </CommentWrap>
+                  </div>
                 </Item>
               );
             }

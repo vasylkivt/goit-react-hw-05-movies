@@ -8,9 +8,9 @@ export const MovieList = forwardRef(({ movies }, ref) => {
   const location = useLocation();
 
   return (
-    <List ref={ref}>
+    <List>
       {movies?.map(movie => (
-        <Item key={movie.id}>
+        <Item ref={ref} key={movie.id}>
           <Link to={`/movies/${movie.id}`} state={{ from: location }}>
             <MovieItem movie={movie} />
           </Link>

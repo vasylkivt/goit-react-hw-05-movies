@@ -67,7 +67,7 @@ const MovieDetails = () => {
   );
 };
 
-export const BtnWrap = styled.div`
+const BtnWrap = styled.div`
   display: flex;
   gap: 30px;
   margin-bottom: 30px;

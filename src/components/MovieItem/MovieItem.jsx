@@ -1,4 +1,6 @@
+import PropTypes from 'prop-types';
 import { IMG_URL } from 'constants';
+
 import { DateText, Image, InfoWrap, Title } from './MovieItem.style';
 import { formatDate } from 'helpers';
 import default_vertical_poster_path from '../../styles/default_vertical_poster_path.jpg';
@@ -25,4 +27,12 @@ export const MovieItem = ({
       </InfoWrap>
     </>
   );
+};
+
+MovieItem.propTypes = {
+  movie: PropTypes.shape({
+    original_title: PropTypes.string.isRequired,
+    release_date: PropTypes.string.isRequired,
+    poster_path: PropTypes.string,
+  }).isRequired,
 };

@@ -14,4 +14,6 @@ export const Title = styled.h2`
   margin-bottom: 5px;
 `;
 
-export const DateText = styled.p``;
+export const DateText = styled.p`
+  color: ${({ theme }) => theme.colors.textColorDark};
+`;

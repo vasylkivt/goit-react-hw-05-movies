@@ -17,7 +17,3 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </React.StrictMode>
 );
-
-// "react-hot-toast": "^2.4.1",
-
-// "react-loader-spinner": "^5.3.4",

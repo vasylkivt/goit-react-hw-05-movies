@@ -69,7 +69,6 @@ const Movies = () => {
           results,
           page: currentPage,
         } = await TMDB_API.searchMovieByQuery(query, page, controller);
-        console.log('response:', results);
 
         setMovies(prev => [...prev, ...results]);
         setIsVisible(currentPage < total_pages);
@@ -99,7 +98,6 @@ const Movies = () => {
   }, [page, movies]);
 
   const handleLoadMore = () => {
-    console.log('click');
     setPage(page + 1);
   };
 

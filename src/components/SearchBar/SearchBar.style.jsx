@@ -16,15 +16,11 @@ export const SearchIcon = styled(RiSearch2Line)`
 
 export const SearchForm = styled.form`
   display: flex;
-
   max-width: 235px;
   border-radius: 25px;
   overflow: hidden;
-
   margin-bottom: 30px;
-
   transition: box-shadow ${({ theme }) => theme.animation.cubicBezier};
-
   box-shadow: ${({ theme }) => theme.shadows.small};
   &:hover,
   &:focus-within {
@@ -40,18 +36,13 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-
   width: 75px;
   height: 40px;
   border: 0;
-
   background-color: ${({ theme }) => theme.colors.backgroundColorDark};
-
   cursor: pointer;
   outline: none;
-
   transition: background-color ${({ theme }) => theme.animation.cubicBezier};
-
   &:hover svg {
     fill: ${({ theme }) => theme.colors.accent};
   }

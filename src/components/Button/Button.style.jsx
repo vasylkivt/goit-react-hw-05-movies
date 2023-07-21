@@ -1,27 +1,26 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-  margin-left: ${({ $marginLeft }) => (!$marginLeft ? '0' : $marginLeft)};
-  margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? 0 : $marginBottom)};
-
   display: block;
 
-  margin-right: auto;
   margin-top: ${({ theme }) => theme.spacing(10)};
-
-  color: ${({ theme }) => theme.colors.textColorLight};
-  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
-
-  border-radius: ${({ theme }) => theme.spacing(5)};
+  margin-bottom: ${({ $marginBottom }) => (!$marginBottom ? 0 : $marginBottom)};
+  margin-left: ${({ $marginLeft }) => (!$marginLeft ? '0' : $marginLeft)};
+  margin-right: auto;
 
   padding: 15px 30px;
+  border-radius: ${({ theme }) => theme.spacing(5)};
+  background-color: ${({ theme }) => theme.colors.backgroundColorDark};
+
+  color: ${({ theme }) => theme.colors.textColorLight};
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
-  transition: box-shadow ${({ theme }) => theme.animation.cubicBezier};
   box-shadow: ${({ theme }) => theme.shadows.small};
-  &:hover,
-  &:focus {
+
+  transition: box-shadow ${({ theme }) => theme.animation.cubicBezier};
+
+  &:hover {
     box-shadow: ${({ theme }) => theme.shadows.main};
   }
 `;
