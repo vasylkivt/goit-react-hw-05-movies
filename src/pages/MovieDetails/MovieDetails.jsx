@@ -1,8 +1,9 @@
-import { Button, MovieDetailsItem, Notification } from 'components';
+import { Button, MovieDetailsItem, Notification, PageLoader } from 'components';
 import styled from 'styled-components';
 import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
+import { SkeletonMovieDetails } from './SkeletonMovieDetails';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -10,6 +11,7 @@ const MovieDetails = () => {
   const backLinkLocationRef = useRef(location.state?.from ?? '/');
   const [movie, setMovie] = useState();
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!movieId) return;
@@ -17,14 +19,17 @@ const MovieDetails = () => {
 
     const getMovieByMovieId = async () => {
       try {
+        setIsLoading(true);
         const response = await TMDB_API.getMovieByMovieId(movieId, controller);
 
         setMovie(response);
         setError(false);
+        setIsLoading(false);
       } catch (error) {
         if (error.message === 'canceled') return;
 
         setError(error.message);
+        setIsLoading(false);
       }
     };
     getMovieByMovieId();
@@ -37,9 +42,10 @@ const MovieDetails = () => {
       <Link to={backLinkLocationRef.current}>
         <Button $marginBottom={'20px'}>Back</Button>
       </Link>
-      {movie && (
+      {
         <>
-          <MovieDetailsItem movie={movie} />
+          {movie && !isLoading && <MovieDetailsItem movie={movie} />}
+          {isLoading && <SkeletonMovieDetails />}
           <BtnWrap>
             <Link to="cast">
               <Button>Cast</Button>
@@ -48,11 +54,12 @@ const MovieDetails = () => {
               <Button>Reviews</Button>
             </Link>
           </BtnWrap>
-          <Suspense fallback={<div>Loading subpage...</div>}>
+          <Suspense fallback={<PageLoader />}>
             <Outlet />
           </Suspense>
         </>
-      )}
+      }
+
       {error && (
         <Notification>{`❌ Something went wrong - ${error}`}</Notification>
       )}

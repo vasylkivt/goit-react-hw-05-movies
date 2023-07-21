@@ -14,7 +14,7 @@ export const MovieItem = ({
         height="375"
         src={
           poster_path
-            ? `${IMG_URL}${poster_path}`
+            ? `${IMG_URL}w342${poster_path}`
             : default_vertical_poster_path
         }
         alt={original_title}

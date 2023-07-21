@@ -17,18 +17,21 @@ import {
   TextWrap,
   UserInfo,
 } from './Reviews.style';
+import { SkeletonReviews } from './SkeletonReviews';
 
 const Reviews = () => {
   const { movieId } = useParams();
 
   const [reviews, setReviews] = useState();
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!movieId) return;
     const controller = new AbortController();
 
     const getMovieReviewsByMovieId = async () => {
+      setIsLoading(true);
       try {
         const response = await TMDB_API.getMovieReviewsByMovieId(
           movieId,
@@ -37,9 +40,11 @@ const Reviews = () => {
 
         setReviews(response);
         setError(false);
+        setIsLoading(false);
       } catch (error) {
         if (error.message === 'canceled') return;
         setError(error.message);
+        setIsLoading(false);
       }
     };
     getMovieReviewsByMovieId();
@@ -48,7 +53,7 @@ const Reviews = () => {
   }, [movieId]);
   return (
     <>
-      {reviews && reviews?.length !== 0 && (
+      {reviews && reviews?.length !== 0 && !isLoading && (
         <List>
           {reviews.map(
             ({
@@ -60,7 +65,7 @@ const Reviews = () => {
               const imgUrl = avatar_path?.includes('https')
                 ? default_vertical_poster_path
                 : avatar_path
-                ? `${IMG_URL}${avatar_path}`
+                ? `${IMG_URL}/original${avatar_path}`
                 : default_vertical_poster_path;
 
               return (
@@ -83,7 +88,7 @@ const Reviews = () => {
           )}
         </List>
       )}
-
+      {isLoading && <SkeletonReviews />}
       <Notification>
         {!error &&
           reviews?.length === 0 &&

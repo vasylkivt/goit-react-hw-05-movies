@@ -1,4 +1,4 @@
-import { Notification } from 'components';
+import { Notification, SkeletonMovie } from 'components';
 import { IMG_URL } from 'constants';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -12,6 +12,7 @@ const Cast = () => {
 
   const [cast, setCast] = useState();
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!movieId) return;
@@ -19,6 +20,7 @@ const Cast = () => {
     const controller = new AbortController();
     const getMovieCastByMovieId = async () => {
       try {
+        setIsLoading(true);
         const response = await TMDB_API.getMovieCastByMovieId(
           movieId,
           controller
@@ -26,9 +28,11 @@ const Cast = () => {
 
         setCast(response);
         setError(false);
+        setIsLoading(false);
       } catch (error) {
         if (error.message === 'canceled') return;
         setError(error.message);
+        setIsLoading(false);
       }
     };
     getMovieCastByMovieId();
@@ -37,7 +41,7 @@ const Cast = () => {
   }, [movieId]);
   return (
     <>
-      {cast && (
+      {cast && !isLoading && (
         <List>
           {cast?.map(({ profile_path, id, original_name, popularity }) => (
             <Item key={id}>
@@ -47,7 +51,7 @@ const Cast = () => {
                 height="375"
                 src={
                   profile_path
-                    ? `${IMG_URL}${profile_path}`
+                    ? `${IMG_URL}/original${profile_path}`
                     : default_vertical_poster_path
                 }
                 alt={original_name}
@@ -60,14 +64,8 @@ const Cast = () => {
           ))}
         </List>
       )}
-      {/* {cast &&
-        cast.map(({ profile_path, id, original_name, popularity }) => (
-          <div key={id}>
-            <img src={`${IMG_URL}${profile_path}`} alt="" />
-            <p>{original_name}</p>
-            <p>{popularity}</p>
-          </div>
-        ))} */}
+      {isLoading && <SkeletonMovie />}
+
       <Notification>
         {!error && cast?.length === 0 && 'Sorry. There are no cast... 😭 '}
         {error && `❌ Something went wrong - ${error}`}

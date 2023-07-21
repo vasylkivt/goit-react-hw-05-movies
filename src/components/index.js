@@ -4,6 +4,9 @@ export * from 'components/Footer/Footer.style';
 export * from 'components/Container/Container.style';
 export * from 'components/Section/Section.style';
 export * from 'components/Notification/Notification.style';
+export * from 'components/SkeletonMovie/SkeletonMovie';
+
+export * from 'components/PageLoader/PageLoader';
 export * from 'components/SharedLayout/SharedLayout';
 export * from 'components/Button/Button.style';
 export * from 'components/SearchBar/SearchBar';

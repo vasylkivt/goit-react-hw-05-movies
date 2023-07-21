@@ -1,4 +1,5 @@
-import { MovieList, Notification, SearchBar } from 'components';
+import { MovieList, Notification, SearchBar, SkeletonMovie } from 'components';
+
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { TMDB_API } from 'services';
@@ -6,6 +7,7 @@ import { TMDB_API } from 'services';
 const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query') ?? '';
@@ -20,6 +22,7 @@ const Movies = () => {
     const controller = new AbortController();
 
     const getTrendMovieByParam = async () => {
+      setIsLoading(true);
       try {
         const response = await TMDB_API.getTrendMovieByParam(
           'week',
@@ -28,9 +31,11 @@ const Movies = () => {
         setMovies(response);
 
         setError(false);
+        setIsLoading(false);
       } catch (error) {
         if (error.message === 'canceled') return;
         setError(error.message);
+        setIsLoading(false);
       }
     };
     getTrendMovieByParam();
@@ -77,7 +82,8 @@ const Movies = () => {
       {error && (
         <Notification> {`❌ Something went wrong - ${error}`}</Notification>
       )}
-      <MovieList movies={movies} />
+      {!isLoading && <MovieList movies={movies} />}
+      {isLoading && <SkeletonMovie />}
     </>
   );
 };

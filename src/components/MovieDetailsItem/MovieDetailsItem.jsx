@@ -30,11 +30,11 @@ export const MovieDetailsItem = ({
     <MovieWrap>
       <Image
         loading="lazy"
-        width="704"
+        width="850"
         height="400"
         src={
           backdrop_path
-            ? `${IMG_URL}${backdrop_path}`
+            ? `${IMG_URL}w1280${backdrop_path}`
             : default_horizontal_poster_path
         }
         alt={original_title}

@@ -1,4 +1,4 @@
-import { Container, Footer, Header, Section } from 'components';
+import { Container, Footer, Header, PageLoader, Section } from 'components';
 import { Outlet } from 'react-router-dom';
 import { Suspense } from 'react';
 import { Logo, Wrap, StyledLink, Nav } from './SharedLayout.style';
@@ -15,15 +15,15 @@ export const SharedLayout = () => {
           </Nav>
         </Header>
       </Container>
-      <Suspense fallback={<div>Loading...</div>}>
-        <main>
-          <Container>
-            <Section>
+      <main>
+        <Container>
+          <Section>
+            <Suspense fallback={<PageLoader />}>
               <Outlet />
-            </Section>
-          </Container>
-        </main>
-      </Suspense>
+            </Suspense>
+          </Section>
+        </Container>
+      </main>
       <Container>
         <Footer>
           <Nav>
