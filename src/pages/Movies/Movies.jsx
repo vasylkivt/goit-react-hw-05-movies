@@ -115,6 +115,7 @@ const Movies = () => {
       <Notification $marginBottom={'25px'}>
         {!isLoading &&
           !error &&
+          // Boolean(movies.length) => 0 => false
           movies?.length === 0 &&
           query &&
           `Sorry. There are no movies by result '${query}' ... 😭  `}
